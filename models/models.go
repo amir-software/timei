@@ -8,6 +8,7 @@ type Center struct {
 	Title       string
 	Address     string
 	PhoneNumber string
+	Avater      string `validate:"required"`
 }
 
 type Service struct {
@@ -15,5 +16,7 @@ type Service struct {
 	Title       string `json:"title" validate:"required"`
 	Description string `json:"custom_description"`
 	IsActive    bool   `json:"-"`
-	CenterId    uint   `gorm:"TYPE:integer REFERENCES Center"`
+	CenterId    uint
 }
+
+// `gorm:"TYPE:integer REFERENCES Center"`

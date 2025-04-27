@@ -19,6 +19,14 @@ func RegisterRoutes(server *gin.Engine) {
 	mustAuthenticate.PUT("/update_service", UpdateServices)
 	mustAuthenticate.DELETE("/delete_service", UpdateServices)
 
+	centerEndpoints := server.Group("/center")
+
+	centerEndpoints.GET("/get_centers", GetCentersAPI)
+	centerEndpoints.GET("/get_center_by_id", GetcentersByIdCenterAPI)
+	centerEndpoints.POST("/create_center", CreateCentersAPI)
+	centerEndpoints.PUT("/update_center", UpdateCenterAPI)
+	centerEndpoints.DELETE("/delete_center", DeleteCenterAPI)
+
 	//
 	router.POST("/sign_up", authentication.SignUp)
 	router.POST("/login", authentication.Login)

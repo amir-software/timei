@@ -2,11 +2,11 @@ package apis
 
 import (
 	"fmt"
-	"golang-temp/models"
 )
 
 // Paginate returns a slice of items based on page and pageSize
-func paginate(page, pageSize int, objectSet []models.Service) ([]models.Service, error) {
+
+func paginate[T any](page, pageSize int, objectSet []T) (interface{}, error) {
 	if page <= 0 || pageSize <= 0 {
 		return nil, fmt.Errorf("invalid pagination parameters")
 	}
