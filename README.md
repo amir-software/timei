@@ -1,2 +1,3 @@
-# timei
-Reservation -- Golang
+# Timei
+A reservation application
+
