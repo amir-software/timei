@@ -180,3 +180,41 @@ func DeleteCenterAPI(context *gin.Context) {
 	}
 
 }
+
+func GetServiceInstanceAPI(context *gin.Context) {
+	params := context.Request.URL.Query()
+
+	var page, pageSize int
+
+	if params.Get("page") == "" {
+		page = 1
+	} else {
+		page, _ = strconv.Atoi(params.Get("page"))
+	}
+	if params.Get("page_size") == "" {
+		pageSize = 3
+	} else {
+		pageSize, _ = strconv.Atoi(params.Get("page_size"))
+	}
+
+	cleanParams := getCleanParams(params)
+
+	servicesInstances := models.GetServiceInstance(cleanParams)
+
+	pagniatedServiceInstance, _ := paginate(page, pageSize, servicesInstances)
+
+	context.JSON(http.StatusOK, gin.H{"serviceInstance": pagniatedServiceInstance})
+
+}
+
+func CreateServiceInstance(context *gin.Context) {
+	var serviceIns models.ServiceInstance
+	err := context.ShouldBindJSON(&serviceIns)
+
+	if err != nil {
+		context.JSON(http.StatusBadRequest, gin.H{"message": "could not parse body"})
+	}
+	serviceInsId := models.CreateServiceInstance(&serviceIns)
+
+	context.JSON(http.StatusOK, gin.H{"service Ins id": serviceInsId})
+}

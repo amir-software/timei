@@ -25,6 +25,12 @@ func MigrateTables() {
 		panic("Faild to migrate ApiLog")
 	}
 
+	err = database.DataBase.AutoMigrate(&ServiceInstance{})
+
+	if err != nil {
+		panic("Faild to migrate ServiceInstance")
+	}
+
 	authentication.AuthenticationMigrations() // migrations of authentication package
 
 }

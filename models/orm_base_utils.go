@@ -88,3 +88,23 @@ func DeleteCenter(id int) string {
 
 	return "Service was deleted"
 }
+
+func GetServiceInstance(params map[string]interface{}) []ServiceInstance {
+	var serviceInstance []ServiceInstance
+
+	database.DataBase.Where(params).Find(&serviceInstance)
+
+	return serviceInstance
+
+}
+
+func CreateServiceInstance(serviceIns *ServiceInstance) uint {
+	newServiceInc := ServiceInstance{
+		Title:     serviceIns.Title,
+		Image:     serviceIns.Image,
+		ServiceId: serviceIns.ServiceId,
+	}
+	database.DataBase.Create(&newServiceInc)
+
+	return newServiceInc.ID
+}

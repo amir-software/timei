@@ -33,7 +33,7 @@ func main() {
 
 	sugar.Info("Server is going to run")
 
-	apis.SendMain()
+	// apis.SendMain()
 	server.Run(fmt.Sprintf(":%s", serverPort))
 
 }

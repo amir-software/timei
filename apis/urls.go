@@ -27,6 +27,11 @@ func RegisterRoutes(server *gin.Engine) {
 	centerEndpoints.PUT("/update_center", UpdateCenterAPI)
 	centerEndpoints.DELETE("/delete_center", DeleteCenterAPI)
 
+	serviceInsEndPoints := server.Group("/service_ins/")
+
+	serviceInsEndPoints.GET("get_service_instances/", GetServiceInstanceAPI)
+	serviceInsEndPoints.POST("create_service_instances/", CreateServiceInstance)
+
 	//
 	router.POST("/sign_up", authentication.SignUp)
 	router.POST("/login", authentication.Login)
