@@ -5,19 +5,17 @@ import (
 	"golang-temp/apis"
 	"golang-temp/database"
 	"golang-temp/models"
-	"log"
 	"os"
 
 	"github.com/gin-gonic/gin"
-	"github.com/joho/godotenv"
 	"go.uber.org/zap"
 )
 
 func main() {
-	err := godotenv.Load(".env")
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
+	// err := godotenv.Load(".env")
+	// if err != nil {
+	// 	log.Fatal("Error loading .env file")
+	// }
 
 	database.InitDataBase("timei.db")
 	models.MigrateTables()
